@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Love For You</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      height: 100vh;
+      background: linear-gradient(to bottom right, #ffe0ec, #fad0c4);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+      z-index: 2;
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      color: #e91e63;
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 10px 15px;
+      font-size: 1.2rem;
+      border: 2px solid #e91e63;
+      border-radius: 10px;
+      outline: none;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #c2185b;
+    }
+
+    .message {
+      margin-top: 20px;
+      text-align: left;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 1s ease;
+    }
+
+    .message.show {
+      max-height: 1000px;
+    }
+
+    .message p {
+      font-size: 1.1rem;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .hearts, .flowers {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart, .flower {
+      position: absolute;
+      font-size: 24px;
+      opacity: 0.7;
+      animation: floatUp 10s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hearts" id="hearts"></div>
+  <div class="flowers" id="flowers"></div>
+
+  <div class="container">
+    <h1>For My Love</h1>
+    <p>Type our monthsary (MM-DD) to unlock the message 💖</p>
+    <input type="text" id="dateInput" placeholder="" />
+    <button onclick="checkDate()">Open Message</button>
+
+    <div class="message" id="loveMessage">
+      <p>
+        mahal na mahal kita boy
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const monthsaryDate = "01-06";
+
+    function checkDate() {
+      const input = document.getElementById("dateInput").value.trim();
+      const message = document.getElementById("loveMessage");
+      if (input === monthsaryDate) {
+        message.classList.add("show");
+      } else {
+        alert("That's not it, my love. Try again! 🥺");
+      }
+    }
+
+    // Floating animation generator
+    function spawnFloatingSymbols(containerId, symbol, count, color) {
+      const container = document.getElementById(containerId);
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement('div');
+        el.className = containerId.slice(0, -1);
+        el.textContent = symbol;
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.top = Math.random() * 100 + 'vh';
+        el.style.animationDuration = (5 + Math.random() * 5) + 's';
+        el.style.fontSize = (16 + Math.random() * 30) + 'px';
+        el.style.color = color;
+        container.appendChild(el);
+      }
+    }
+
+    spawnFloatingSymbols('hearts', '💖', 20, '#e91e63');
+    spawnFloatingSymbols('flowers', '🌸', 15, '#ff69b4');
+  </script>
+</body>
+</html>
